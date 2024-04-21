@@ -43,7 +43,7 @@ struct HomeView: View {
                         .resizable()
                         .aspectRatio(contentMode: .fit)
                         .frame(width:35.0)
-                        .offset(.init(width: 0.0, height: 4.0))
+                        .offset(.init(width: 0.0, height: 3.0))
                 }
                 //BG delta
                 Text(lastEGVDeltaFormatted())
