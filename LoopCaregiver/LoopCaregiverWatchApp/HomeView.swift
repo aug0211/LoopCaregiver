@@ -42,7 +42,7 @@ struct HomeView: View {
                     Image(systemName: egv.arrowImageName())
                         .resizable()
                         .aspectRatio(contentMode: .fit)
-                        .frame(width:35.0)
+                        .frame(width:25.0)
                         .offset(.init(width: 0.0, height: 3.0))
                 }
                 //BG delta
