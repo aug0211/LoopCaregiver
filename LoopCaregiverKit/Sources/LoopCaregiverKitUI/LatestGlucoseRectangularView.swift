@@ -28,7 +28,7 @@ public struct LatestGlucoseRectangularView: View {
                 Text(viewModel.currentGlucoseNumberText)
                     .foregroundStyle(egvColor)
                     .strikethrough(viewModel.isGlucoseStale)
-                    .font(.system(size: 70.0))
+                    .font(.system(size: 65.0))
             }
             VStack (spacing: 0) {
                 HStack {
@@ -46,7 +46,7 @@ public struct LatestGlucoseRectangularView: View {
                         .font(.system(size: 20.0))
                 }
                 //Minutes since update
-                Text("~" + viewModel.currentGlucoseDateText)
+                Text(viewModel.currentGlucoseDateText)
                     .strikethrough(viewModel.isGlucoseStale)
                     .font(.system(size: 20.0))
             }
