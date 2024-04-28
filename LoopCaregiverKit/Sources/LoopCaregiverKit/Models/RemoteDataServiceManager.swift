@@ -35,7 +35,8 @@ public class RemoteDataServiceManager: ObservableObject, RemoteDataServiceProvid
         self.remoteDataProvider = remoteDataProvider
     }
     
-    func monitorForUpdates(updateInterval: TimeInterval = 30.0) {
+    //Auggie - pull updates every second
+    func monitorForUpdates(updateInterval: TimeInterval = 1.0) {
         
         Task {
             await self.updateData()
