@@ -30,9 +30,6 @@ struct HomeView: View {
     }
     
     var body: some View {
-        
-//Auggie - original home view implementation here
-
         HStack (spacing: 10) {
             VStack {
                 //BG number
@@ -62,6 +59,7 @@ struct HomeView: View {
                     .font(.system(size: 20.0 * homeViewTextMultiplier))
             }
         }
+        //Auggie - original home view implementation here
         /*
         VStack (spacing: 0) {
             //BG number
