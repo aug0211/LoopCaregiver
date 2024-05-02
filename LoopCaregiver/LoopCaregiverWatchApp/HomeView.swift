@@ -19,6 +19,8 @@ struct HomeView: View {
     @ObservedObject var looperService: LooperService
     @Environment(\.scenePhase) var scenePhase
     
+    var homeViewTextMultiplier = 1.20
+    
     init(connectivityManager: WatchService, looperService: LooperService){
         self.connectivityManager = connectivityManager
         self.looperService = looperService
@@ -28,40 +30,75 @@ struct HomeView: View {
     }
     
     var body: some View {
-        VStack  (spacing: 0) {
+        
+//Auggie - original home view implementation here
+
+        HStack (spacing: 10) {
+            VStack {
+                //BG number
+                Text(remoteDataSource.currentGlucoseSample?.presentableStringValue(displayUnits: settings.glucoseDisplayUnits) ?? "??")
+                    .strikethrough(egvIsOutdated())
+                    .font(.system(size: 65.0 * homeViewTextMultiplier))
+                    .foregroundColor(egvValueColor())
+            }
+            VStack (spacing: 0) {
+                HStack {
+                    //Trend arrow
+                    if let egv = remoteDataSource.currentGlucoseSample {
+                        Image(systemName: egv.arrowImageName())
+                            .resizable()
+                            .aspectRatio(contentMode: .fit)
+                            .frame(maxWidth: 12 * homeViewTextMultiplier)
+                            .offset(.init(width: 0.0, height: 1.5 * homeViewTextMultiplier))
+                    }
+                    //BG delta
+                    Text(lastEGVDeltaFormatted())
+                        .strikethrough(egvIsOutdated())
+                        .font(.system(size: 20.0 * homeViewTextMultiplier))
+                }
+                //Minutes since update
+                Text(durSinceEGV())
+                    .strikethrough(egvIsOutdated())
+                    .font(.system(size: 20.0 * homeViewTextMultiplier))
+            }
+        }
+        /*
+        VStack (spacing: 0) {
             //BG number
             HStack {
                 Text(remoteDataSource.currentGlucoseSample?.presentableStringValue(displayUnits: settings.glucoseDisplayUnits) ?? " ")
                     .strikethrough(egvIsOutdated())
-                    .font(.custom("SF Compact", fixedSize:50))
+                    .font(.custom("SF Compact", fixedSize:70))
                     .foregroundColor(egvValueColor())
             }
-            //Trend arrow
-            HStack {
-                if let egv = remoteDataSource.currentGlucoseSample {
-                    Image(systemName: egv.arrowImageName())
-                        .resizable()
-                        .aspectRatio(contentMode: .fit)
-                        .frame(width:25.0)
-                        .offset(.init(width: 0.0, height: 3.0))
+            VStack (spacing: 10) {
+                //Trend arrow
+                HStack {
+                    if let egv = remoteDataSource.currentGlucoseSample {
+                        Image(systemName: egv.arrowImageName())
+                            .resizable()
+                            .aspectRatio(contentMode: .fit)
+                            .frame(width:25.0)
+                            .offset(.init(width: 0.0, height: 3.0))
+                    }
+                    //BG delta
+                    Text(lastEGVDeltaFormatted())
+                        .strikethrough(egvIsOutdated())
+                        .font(.custom("SF Compact", fixedSize:40))
+                    
                 }
-                //BG delta
-                Text(lastEGVDeltaFormatted())
-                    .strikethrough(egvIsOutdated())
-                    .font(.custom("SF Compact", fixedSize:40))
-                
-            }
-            //Time since last reading in mm:ss format
-            HStack {
-                Text(durSinceEGV())
-                    .font(.custom("SF Compact", fixedSize:30))
-                Text("ago")
-                    .font(.custom("SF Compact", fixedSize:30))
-                    .if(egvIsOutdated(), transform: { view in
-                        view.foregroundColor(.red)
-                    })
+                //Time since last reading in mm:ss format
+                HStack {
+                    Text(durSinceEGV())
+                        .font(.custom("SF Compact", fixedSize:30))
+                    /*
+                     Text("ago")
+                     .font(.custom("SF Compact", fixedSize:30))
+                     */
+                }
             }
         }
+         */
         .navigationTitle(accountService.selectedLooper?.name ?? "Name?")
         .navigationDestination(for: String.self, destination: { _ in
             SettingsView(connectivityManager: connectivityManager, accountService: accountService, settings: settings)
