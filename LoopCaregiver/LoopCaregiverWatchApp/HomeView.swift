@@ -19,7 +19,8 @@ struct HomeView: View {
     @ObservedObject var looperService: LooperService
     @Environment(\.scenePhase) var scenePhase
     
-    var homeViewTextMultiplier = 1.20
+    //Reduced from 1.2 to 1.16 for Stainless Steel (non ultra)
+    var homeViewTextMultiplier = 1.16
     
     init(connectivityManager: WatchService, looperService: LooperService){
         self.connectivityManager = connectivityManager
