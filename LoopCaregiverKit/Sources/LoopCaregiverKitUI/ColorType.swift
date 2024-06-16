@@ -16,6 +16,13 @@ public enum ColorType: Int, CaseIterable, Comparable {
     case yellow
     case red
     case clear
+    case purple
+    case mint
+    case teal
+    case cyan
+    case indigo
+    case blue
+    case orange
     
     public init(quantity: HKQuantity) {
         let glucose = quantity.doubleValue(for:.milligramsPerDeciliter)
@@ -23,13 +30,19 @@ public enum ColorType: Int, CaseIterable, Comparable {
         case -Double.infinity..<55:
             self = ColorType.red
         case 55..<70:
+            self = ColorType.orange
+        case 70..<80:
             self = ColorType.yellow
-        case 70..<180:
+        case 80..<100:
             self = ColorType.green
-        case 180..<250:
-            self = ColorType.yellow
-        case 250...:
-            self = ColorType.red
+        case 100..<120:
+            self = ColorType.mint
+        case 120..<140:
+            self = ColorType.blue
+        case 140..<180:
+            self = ColorType.indigo
+        case 180...:
+            self = ColorType.purple
         default:
             assertionFailure("Unexpected quantity: \(quantity)")
             self = ColorType.gray
@@ -48,6 +61,20 @@ public enum ColorType: Int, CaseIterable, Comparable {
             return Color.red
         case .clear:
             return Color.clear
+        case .purple:
+            return Color.purple
+        case .mint:
+            return Color.mint
+        case .teal:
+            return Color.teal
+        case .cyan:
+            return Color.cyan
+        case .indigo:
+            return Color.indigo
+        case .blue:
+            return Color.blue
+        case .orange:
+            return Color.orange
         }
     }
     
