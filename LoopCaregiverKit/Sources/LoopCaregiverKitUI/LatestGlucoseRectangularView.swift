@@ -28,6 +28,7 @@ public struct LatestGlucoseRectangularView: View {
                 Text(viewModel.currentGlucoseNumberText)
                     .foregroundStyle(egvColor)
                     .strikethrough(viewModel.isGlucoseStale)
+                    //65 for Ultra, try 60 for smaller
                     .font(.system(size: 65.0))
             }
             VStack (spacing: 0) {

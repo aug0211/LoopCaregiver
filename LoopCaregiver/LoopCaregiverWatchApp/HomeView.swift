@@ -19,8 +19,8 @@ struct HomeView: View {
     @ObservedObject var looperService: LooperService
     @Environment(\.scenePhase) var scenePhase
     
-    //Reduced from 1.2 to 1.16 for Stainless Steel (non ultra)
-    var homeViewTextMultiplier = 1.16
+    //Reduced from 1.2 to 1.0 for smaller watch faces
+    var homeViewTextMultiplier = 1.2
     
     init(connectivityManager: WatchService, looperService: LooperService){
         self.connectivityManager = connectivityManager
@@ -193,7 +193,7 @@ struct HomeView: View {
             
             // Define the bgLevel thresholds
             let minLevel = 55 // Use the urgent low BG value for red text
-            let targetLevel = 90 // Use the target BG for green text
+            let targetLevel = 100 // Use the target BG for green text
             let maxLevel = 180 // Use the urgent high BG value for purple text
             
             // Calculate the hue based on the bgLevel
