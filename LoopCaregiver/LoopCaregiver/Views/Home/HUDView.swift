@@ -138,7 +138,7 @@ struct HUDView: View {
             
             // Define the bgLevel thresholds
             let minLevel = 55 // Use the urgent low BG value for red text
-            let targetLevel = 90 // Use the target BG for green text
+            let targetLevel = 100 // Use the target BG for green text
             let maxLevel = 180 // Use the urgent high BG value for purple text
             
             // Calculate the hue based on the bgLevel
