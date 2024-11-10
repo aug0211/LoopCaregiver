@@ -118,7 +118,8 @@ struct HomeView: View {
                         Text("")
                     }
                     ProgressView()
-                        .opacity(remoteDataSource.updating ? 1.0 : 0.0)
+                        //Auggie - this is where we hide/show the refresh progress indicator
+                        .opacity(remoteDataSource.updating ? 0.0 : 0.0)
                         .allowsHitTesting(false)
                 }
             })
