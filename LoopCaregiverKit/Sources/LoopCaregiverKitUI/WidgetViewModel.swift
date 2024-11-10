@@ -36,8 +36,13 @@ public struct WidgetViewModel {
     public var currentGlucoseDateText: String {
         let elapsedMinutes: Double = timelineEntryDate.timeIntervalSince(latestGlucose.date) / 60.0
         let roundedMinutes = Int(exactly: elapsedMinutes.rounded(.up)) ?? 0
-        return "\(roundedMinutes)m"
+        let timeInterval = Date().timeIntervalSince(latestGlucose.date)
+        let minutes = String(Int(timeInterval) / 60)
+        let seconds = String(format: "%02d", Int(timeInterval) % 60)
+        return "\(minutes):\(seconds)"
     }
+    
+    
     
     public var isGlucoseStale: Bool {
         return latestGlucose.date < timelineEntryDate.addingTimeInterval(-60 * 15)
